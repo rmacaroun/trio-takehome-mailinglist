@@ -1,35 +1,37 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.3'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-	id 'idea'
+	id "org.springframework.boot" version "2.6.3"
+	id "io.spring.dependency-management" version "1.0.11.RELEASE"
+	id "java"
+	id "idea"
 }
 
 ext {
-	lombok_version = '1.18.22'
+	lombok_version = "1.18.22"
 }
 
-group = 'com.trio.rmacaroun.takehome'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+group = "com.trio.rmacaroun.takehome"
+version = "0.0.1-SNAPSHOT"
+sourceCompatibility = "8"
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation "org.springframework.boot:spring-boot-starter"
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
 
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "org.springframework.boot:spring-boot-starter-web"
+	testImplementation "org.springframework.boot:spring-boot-starter-web"
 
 	compileOnly "org.projectlombok:lombok:${lombok_version}"
 	annotationProcessor "org.projectlombok:lombok:${lombok_version}"
 
-	implementation 'org.yaml:snakeyaml:1.28'
+	implementation "org.yaml:snakeyaml:1.28"
+
+	implementation "ma.glasnost.orika:orika-core:1.5.4"
 }
 
-tasks.named('test') {
+tasks.named("test") {
 	useJUnitPlatform()
 }

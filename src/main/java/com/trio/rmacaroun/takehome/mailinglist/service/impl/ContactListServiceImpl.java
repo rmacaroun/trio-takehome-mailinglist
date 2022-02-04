@@ -26,7 +26,7 @@ public class ContactListServiceImpl implements ContactListService {
     public List<Contact> fetchAllContacts() {
         final ResponseEntity<Contact[]> responseEntity = this.restTemplate.getForEntity(mockApiContactAddress, Contact[].class);
         final Contact[] contacts = responseEntity.getBody();
-        log.info("Number of Contacts: {}", contacts.length);
-        return Arrays.asList(contacts);
+        log.info("Number of Available Contacts: {}", contacts.length);
+        return Arrays.asList(contacts); // TODO manage null response
     }
 }

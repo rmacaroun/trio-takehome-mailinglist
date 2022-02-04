@@ -1,6 +1,6 @@
 package com.trio.rmacaroun.takehome.mailinglist.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,20 +13,20 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class Contact implements Serializable {
+public class MergeFields implements Serializable {
 
-    private static final long serialVersionUID = 4278011221288128334L;
+    private static final long serialVersionUID = -280838221284411432L;
 
-    private Integer id;
-
+    @JsonProperty("FNAME")
     private String firstName;
 
+    @JsonProperty("LNAME")
     private String lastName;
 
-    private String email;
-
-    private String avatar;
+    private Integer trioId;
 
     private Date createdAt;
+
+    @JsonProperty("AVATAR")
+    private String avatar;
 }

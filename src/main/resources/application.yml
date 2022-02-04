@@ -1,4 +1,15 @@
 application:
   mockapi:
     contact:
-      address: https://613b9035110e000017a456b1.mockapi.io/api/v1/contacts
+      address: https://cfa41fbb-28c9-4f12-9b93-afd566d196a8.mock.pstmn.io/api/v1/contacts #TODO mocked response
+#      address: https://613b9035110e000017a456b1.mockapi.io/api/v1/contacts
+  mailchimp:
+    api:
+      username: rmacaroun
+      baseurl: https://us14.api.mailchimp.com/3.0
+      key: 113e22af7a6564e1d33266e3429ecc08-us14
+      audience-id: 58e10be148
+      endpoint:
+        add-member: /lists/58e10be148/members
+        update-member: /lists/58e10be148/members/{subscriber_hash}
+        search-member: /search-members?query={query}
