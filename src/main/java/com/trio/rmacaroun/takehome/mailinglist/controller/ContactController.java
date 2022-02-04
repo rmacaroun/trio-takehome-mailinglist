@@ -23,7 +23,7 @@ public class ContactController {
     @GetMapping("/sync")
     public ResponseEntity syncContacts() {
         final List<Contact> syncedContacts = this.mailchimpService.addOrUpdateAudienceMembers();
-        log.info("Number of synced Contacts: ", syncedContacts.size());
+        log.info("Number of synced Contacts: {}", syncedContacts.size());
         SyncedContactsResponse syncedContactsResponse = SyncedContactsResponse.builder()
                 .syncedContacts(syncedContacts.size())
                 .contacts(syncedContacts)
