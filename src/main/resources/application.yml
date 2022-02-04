@@ -1,15 +1,26 @@
 application:
   mockapi:
     contact:
-      address: https://cfa41fbb-28c9-4f12-9b93-afd566d196a8.mock.pstmn.io/api/v1/contacts #TODO mocked response
-#      address: https://613b9035110e000017a456b1.mockapi.io/api/v1/contacts
+#      baseurl: https://613b9035110e000017a456b1.mockapi.io
+      baseurl: https://cfa41fbb-28c9-4f12-9b93-afd566d196a8.mock.pstmn.io # TODO mocked response
+      endpoint: /api/v1/contacts
   mailchimp:
     api:
       username: rmacaroun
-      baseurl: https://us14.api.mailchimp.com/3.0
-      key: 113e22af7a6564e1d33266e3429ecc08-us14
-      audience-id: 58e10be148
+      baseurl: https://us14.api.mailchimp.com/3.0 # TODO use env var for us14
+      key: 113e22af7a6564e1d33266e3429ecc08-us14 # TODO fix hard-coded
+      audience-id: 58e10be148 # TODO fix hard-coded
       endpoint:
-        add-member: /lists/58e10be148/members
-        update-member: /lists/58e10be148/members/{subscriber_hash}
-        search-member: /search-members?query={query}
+        update-member: /lists/{audience_id}/members/{subscriber_hash}
+
+logging:
+  level:
+    com:
+      trio:
+        rmacaroun:
+          takehome:
+            mailinglist: INFO
+      baeldung:
+        cloud:
+          openfeign:
+            client: DEBUG
