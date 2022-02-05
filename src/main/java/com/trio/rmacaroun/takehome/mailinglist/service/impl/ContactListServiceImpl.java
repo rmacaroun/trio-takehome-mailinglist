@@ -20,6 +20,6 @@ public class ContactListServiceImpl implements ContactListService {
     public List<Contact> fetchAllContacts() {
         final List<Contact> contacts = this.contactListClient.fetchAllContacts();
         log.info("Contacts were fetched successfully. Number of Available Contacts: {}", contacts.size());
-        return contacts; // TODO manage exceptions
+        return contacts;
     }
 }
