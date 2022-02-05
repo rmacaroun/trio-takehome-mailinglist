@@ -72,7 +72,7 @@ public class MailchimpServiceTest {
 
     @Test
     public void shouldAddOrUpdateAudienceMembers() {
-        when(this.contactListService.fetchAllContacts()).thenReturn(Arrays.asList(this.contact));
+        when(this.contactListService.listAllContacts()).thenReturn(Arrays.asList(this.contact));
         when(this.mailchimpClient.updateAudienceMember(anyString(), anyString(), Mockito.any())).thenReturn(this.member);
         List<Contact> contacts = this.mailchimpService.addOrUpdateAudienceMembers();
         isTrue(!contacts.isEmpty(), "Contact List is empty");

@@ -13,5 +13,5 @@ import java.util.List;
 public interface ContactListClient {
 
     @GetMapping(path = "${application.mockapi.contactList.endpoint}")
-    public List<Contact> fetchAllContacts();
+    public List<Contact> listAllContacts();
 }

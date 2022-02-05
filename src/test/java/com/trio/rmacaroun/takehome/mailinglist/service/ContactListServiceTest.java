@@ -43,9 +43,9 @@ public class ContactListServiceTest {
     }
 
     @Test
-    public void shouldFetchAllContacts() {
-        Mockito.when(this.contactListService.fetchAllContacts()).thenReturn(Arrays.asList(this.contact));
-        final List<Contact> contacts = this.contactListClient.fetchAllContacts();
+    public void shouldListAllContacts() {
+        Mockito.when(this.contactListService.listAllContacts()).thenReturn(Arrays.asList(this.contact));
+        final List<Contact> contacts = this.contactListClient.listAllContacts();
         isTrue(!contacts.isEmpty(), "Contact List is empty");
         final Optional<Contact> first = contacts.stream().findFirst();
         isTrue(first.isPresent(), "Contact List first item is not present");

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ContactListService {
 
-    List<Contact> fetchAllContacts();
+    List<Contact> listAllContacts();
 }

@@ -73,7 +73,7 @@ public class ContactListControllerIntegTest {
 
     @Test
     public void testSyncContactController() throws Exception {
-        Mockito.when(this.contactListService.fetchAllContacts()).thenReturn(Arrays.asList(this.contact));
+        Mockito.when(this.contactListService.listAllContacts()).thenReturn(Arrays.asList(this.contact));
         Mockito.when(this.mailchimpClient.updateAudienceMember(anyString(), anyString(), Mockito.any())).thenReturn(this.member);
         this.mockMvc.perform(
                         get("/contacts/sync"))

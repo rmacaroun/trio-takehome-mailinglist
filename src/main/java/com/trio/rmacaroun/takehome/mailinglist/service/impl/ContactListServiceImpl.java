@@ -17,8 +17,8 @@ public class ContactListServiceImpl implements ContactListService {
     private final ContactListClient contactListClient;
 
     @Override
-    public List<Contact> fetchAllContacts() {
-        final List<Contact> contacts = this.contactListClient.fetchAllContacts();
+    public List<Contact> listAllContacts() {
+        final List<Contact> contacts = this.contactListClient.listAllContacts();
         log.info("Contacts were fetched successfully. Number of Available Contacts: {}", contacts.size());
         return contacts;
     }
