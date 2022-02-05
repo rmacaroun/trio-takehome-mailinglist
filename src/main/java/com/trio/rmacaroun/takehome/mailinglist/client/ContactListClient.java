@@ -8,10 +8,10 @@ import java.util.List;
 
 @FeignClient(
         value = "contactlist-client",
-        url = "${application.mockapi.contact.baseurl}"
+        url = "${application.mockapi.contactList.baseurl}"
 )
 public interface ContactListClient {
 
-    @GetMapping(path = "${application.mockapi.contact.endpoint}")
+    @GetMapping(path = "${application.mockapi.contactList.endpoint}")
     public List<Contact> fetchAllContacts();
 }

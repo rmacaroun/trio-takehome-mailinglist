@@ -34,7 +34,7 @@ public class MailchimpServiceImpl implements MailchimpService {
         final List<Member> members = new ArrayList<>();
         final List<Contact> contacts = this.contactListService.fetchAllContacts();
         contacts.forEach(contact ->
-            updateAudienceMember(contact).ifPresent(members::add)
+                updateAudienceMember(contact).ifPresent(members::add)
         );
         return this.contactMemberMapper.mapAsList(members, Contact.class);
     }
@@ -43,6 +43,6 @@ public class MailchimpServiceImpl implements MailchimpService {
         final Member member = this.contactMemberMapper.map(contact, Member.class);
         final Member updatedMember = this.mailchimpClient.updateAudienceMember(audienceId, member.getEmailAddress(), member);
         log.debug("Member {} updated successfully", updatedMember.getEmailAddress());
-        return Optional.of(updatedMember); // TODO manage exceptions
+        return Optional.of(updatedMember);
     }
 }

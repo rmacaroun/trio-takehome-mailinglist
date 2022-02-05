@@ -1,6 +1,6 @@
 application:
   mockapi:
-    contact:
+    contactList:
 #      baseurl: https://613b9035110e000017a456b1.mockapi.io
       baseurl: https://cfa41fbb-28c9-4f12-9b93-afd566d196a8.mock.pstmn.io # TODO mocked response
       endpoint: /api/v1/contacts
@@ -24,3 +24,7 @@ logging:
         cloud:
           openfeign:
             client: DEBUG
+
+server:
+  error:
+    include-message: always
