@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.springframework.util.Assert.isTrue;
 
 @SpringBootTest
 public class ContactListServiceTest {
@@ -46,14 +47,14 @@ public class ContactListServiceTest {
     public void testContactList() {
         Mockito.when(this.contactListService.fetchAllContacts()).thenReturn(Arrays.asList(this.contact));
         final List<Contact> contacts = this.contactListClient.fetchAllContacts();
-        Assert.isTrue(!contacts.isEmpty(), "Contact List is empty");
+        isTrue(!contacts.isEmpty(), "Contact List is empty");
         final Optional<Contact> first = contacts.stream().findFirst();
-        Assert.isTrue(first.isPresent(), "Contact List first item is not present");
+        isTrue(first.isPresent(), "Contact List first item is not present");
         Contact firstContact = first.get();
-        Assert.isTrue(isNotBlank(firstContact.getEmail()), "Email is empty in the first contact");
-        Assert.isTrue(isNotBlank(firstContact.getFirstName()), "First Name is empty in the first contact");
-        Assert.isTrue(isNotBlank(firstContact.getLastName()), "Last Name is empty in the first contact");
-        Assert.isTrue(firstContact.getId() != null, "Id is null");
-        Assert.isTrue(firstContact.getCreatedAt() != null, "Date is null");
+        isTrue(isNotBlank(firstContact.getEmail()), "Email is empty in the first contact");
+        isTrue(isNotBlank(firstContact.getFirstName()), "First Name is empty in the first contact");
+        isTrue(isNotBlank(firstContact.getLastName()), "Last Name is empty in the first contact");
+        isTrue(firstContact.getId() != null, "Id is null");
+        isTrue(firstContact.getCreatedAt() != null, "Date is null");
     }
 }
