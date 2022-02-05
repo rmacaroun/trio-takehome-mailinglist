@@ -8,7 +8,6 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.util.Assert;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -44,7 +43,7 @@ public class ContactListServiceTest {
     }
 
     @Test
-    public void testContactList() {
+    public void shouldFetchAllContacts() {
         Mockito.when(this.contactListService.fetchAllContacts()).thenReturn(Arrays.asList(this.contact));
         final List<Contact> contacts = this.contactListClient.fetchAllContacts();
         isTrue(!contacts.isEmpty(), "Contact List is empty");
