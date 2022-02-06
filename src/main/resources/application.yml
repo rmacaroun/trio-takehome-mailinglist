@@ -9,8 +9,8 @@ application:
       username: rmacaroun
       baseurl: https://us14.api.mailchimp.com/3.0 # TODO use env var for us14
       key: 113e22af7a6564e1d33266e3429ecc08-us14 # TODO fix hard-coded
-      audience-id: 58e10be148 # TODO fix hard-coded
       endpoint:
+        list-audience: /lists
         update-member: /lists/{audience_id}/members/{subscriber_hash}
 
 logging:

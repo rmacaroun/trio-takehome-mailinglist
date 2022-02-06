@@ -29,6 +29,7 @@ public class ContactMemberMapper extends ConfigurableMapper {
                     @Override
                     public void mapAtoB(Contact contact, Member member, MappingContext context) {
                         member.setStatus(Status.SUBSCRIBED.getValue());
+                        member.setStatusIfNew(Status.SUBSCRIBED.getValue());
                         MergeFields mergeFields = member.getMergeFields();
                         mergeFields.setAvatar(contact.getAvatar());
                         mergeFields.setCreatedAt(contact.getCreatedAt());

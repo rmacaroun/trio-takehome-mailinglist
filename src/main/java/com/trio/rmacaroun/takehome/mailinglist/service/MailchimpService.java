@@ -7,4 +7,6 @@ import java.util.List;
 public interface MailchimpService {
 
     List<Contact> addOrUpdateAudienceMembers();
+
+    String findAudienceId();
 }

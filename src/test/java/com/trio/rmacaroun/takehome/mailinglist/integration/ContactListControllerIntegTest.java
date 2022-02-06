@@ -1,10 +1,7 @@
 package com.trio.rmacaroun.takehome.mailinglist.integration;
 
 import com.trio.rmacaroun.takehome.mailinglist.client.MailchimpClient;
-import com.trio.rmacaroun.takehome.mailinglist.dto.Contact;
-import com.trio.rmacaroun.takehome.mailinglist.dto.Member;
-import com.trio.rmacaroun.takehome.mailinglist.dto.MergeFields;
-import com.trio.rmacaroun.takehome.mailinglist.dto.Status;
+import com.trio.rmacaroun.takehome.mailinglist.dto.*;
 import com.trio.rmacaroun.takehome.mailinglist.service.ContactListService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +19,7 @@ import java.util.Date;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -73,8 +71,12 @@ public class ContactListControllerIntegTest {
 
     @Test
     public void testSyncContactController() throws Exception {
-        Mockito.when(this.contactListService.listAllContacts()).thenReturn(Arrays.asList(this.contact));
-        Mockito.when(this.mailchimpClient.updateAudienceMember(anyString(), anyString(), Mockito.any())).thenReturn(this.member);
+        when(this.contactListService.listAllContacts()).thenReturn(Arrays.asList(this.contact));
+        when(this.mailchimpClient.updateAudienceMember(anyString(), anyString(), Mockito.any())).thenReturn(this.member);
+        when(this.mailchimpClient.listAudiences()).thenReturn(
+                Audiences.builder()
+                        .lists(Arrays.asList(Audiences.Audience.builder().id("1").build())).totalItems(1).build()
+        );
         this.mockMvc.perform(
                         get("/contacts/sync"))
                 .andDo(print())

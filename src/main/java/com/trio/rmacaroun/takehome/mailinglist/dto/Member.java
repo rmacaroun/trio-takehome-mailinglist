@@ -21,6 +21,9 @@ public class Member implements Serializable {
 
     private String status;
 
+    @JsonProperty("status_if_new")
+    private String statusIfNew;
+
     @JsonProperty("merge_fields")
     private MergeFields mergeFields;
 }

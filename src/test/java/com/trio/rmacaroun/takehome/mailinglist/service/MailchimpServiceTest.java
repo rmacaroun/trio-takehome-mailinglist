@@ -2,10 +2,7 @@ package com.trio.rmacaroun.takehome.mailinglist.service;
 
 import com.trio.rmacaroun.takehome.mailinglist.client.MailchimpClient;
 import com.trio.rmacaroun.takehome.mailinglist.decoder.FeignCustomErrorDecoder;
-import com.trio.rmacaroun.takehome.mailinglist.dto.Contact;
-import com.trio.rmacaroun.takehome.mailinglist.dto.Member;
-import com.trio.rmacaroun.takehome.mailinglist.dto.MergeFields;
-import com.trio.rmacaroun.takehome.mailinglist.dto.Status;
+import com.trio.rmacaroun.takehome.mailinglist.dto.*;
 import feign.codec.ErrorDecoder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,17 +71,20 @@ public class MailchimpServiceTest {
     public void shouldAddOrUpdateAudienceMembers() {
         when(this.contactListService.listAllContacts()).thenReturn(Arrays.asList(this.contact));
         when(this.mailchimpClient.updateAudienceMember(anyString(), anyString(), Mockito.any())).thenReturn(this.member);
+        when(this.mailchimpClient.listAudiences()).thenReturn(
+                Audiences.builder()
+                        .lists(Arrays.asList(Audiences.Audience.builder().id("1").build())).totalItems(1).build()
+        );
         List<Contact> contacts = this.mailchimpService.addOrUpdateAudienceMembers();
         isTrue(!contacts.isEmpty(), "Contact List is empty");
         final Optional<Contact> first = contacts.stream().findFirst();
         isTrue(first.isPresent(), "Contact List first item is not present");
         final Contact firstContact = first.get();
-        isNull(firstContact.getId(), "Email is empty in the first contact");
-        isNull(firstContact.getCreatedAt(), "Email is empty in the first contact");
-        isNull(firstContact.getAvatar(), "Email is empty in the first contact");
+        isNull(firstContact.getId(), "Id has a value");
+        isNull(firstContact.getCreatedAt(), "Created at has a value");
+        isNull(firstContact.getAvatar(), "Avatar has a value");
         isTrue(isNotBlank(firstContact.getEmail()), "Email is empty in the first contact");
         isTrue(isNotBlank(firstContact.getFirstName()), "First Name is empty in the first contact");
         isTrue(isNotBlank(firstContact.getLastName()), "Last Name is empty in the first contact");
     }
-    // TODO add exception test
 }

@@ -55,5 +55,6 @@ public class ContactListServiceTest {
         isTrue(isNotBlank(firstContact.getLastName()), "Last Name is empty in the first contact");
         isTrue(firstContact.getId() != null, "Id is null");
         isTrue(firstContact.getCreatedAt() != null, "Date is null");
+        isTrue(firstContact.getAvatar() != null, "Avatar is null");
     }
 }
