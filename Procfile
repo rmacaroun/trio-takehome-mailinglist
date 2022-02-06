@@ -1,1 +1,1 @@
-web: java -jar build/libs/trio-takehome-mailinglist-1.0-SNAPSHOT.jar
+web: java -jar build/libs/trio-takehome-mailinglist-0.0.1-SNAPSHOT.jar
