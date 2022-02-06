@@ -7,7 +7,7 @@ application:
     api:
       username: rmacaroun
       baseurl: https://${DC_ID}.api.mailchimp.com/3.0
-      key: ${DC_ID}
+      key: ${API_KEY}
       endpoint:
         list-audience: /lists
         update-member: /lists/{audience_id}/members/{subscriber_hash}
