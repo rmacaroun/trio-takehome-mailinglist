@@ -1,14 +1,13 @@
 application:
   mockapi:
     contactList:
-#      baseurl: https://613b9035110e000017a456b1.mockapi.io
-      baseurl: https://cfa41fbb-28c9-4f12-9b93-afd566d196a8.mock.pstmn.io # TODO mocked response
-      endpoint: /api/v1/contacts
+      baseurl: ${CONTACT_LIST_BASE_URL}
+      endpoint: ${CONTACT_LIST_ENDPOINT}
   mailchimp:
     api:
       username: rmacaroun
-      baseurl: https://us14.api.mailchimp.com/3.0 # TODO use env var for us14
-      key: 113e22af7a6564e1d33266e3429ecc08-us14 # TODO fix hard-coded
+      baseurl: https://${DC_ID}.api.mailchimp.com/3.0
+      key: ${DC_ID}
       endpoint:
         list-audience: /lists
         update-member: /lists/{audience_id}/members/{subscriber_hash}
