@@ -38,6 +38,12 @@ dependencies {
 	testImplementation "org.apache.commons:commons-lang3:${apache_commons_version}"
 }
 
+jar {
+	manifest {
+		attributes "Main-Class": "com.trio.rmacaroun.takehome.mailinglist.MailingListApplication"
+	}
+}
+
 tasks.named("test") {
 	useJUnitPlatform()
 }
