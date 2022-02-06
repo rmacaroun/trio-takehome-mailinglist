@@ -14,8 +14,9 @@ Important! _**master**_ branch has the latest release content
       - Tip #2: add ```--offline``` if you don't need to download libraries or are having issues synchronizing with your repo
       - ![Run/Debug Dialog Configurations](/assets/RunDebug.png)
    3. Set the **Environment variables**:
-      1. Past the content below in the text box:
+      - Paste the content below in the text box:
          - ```CONTACT_LIST_BASE_URL=https://cfa41fbb-28c9-4f12-9b93-afd566d196a8.mock.pstmn.io/api/v1;CONTACT_LIST_ENDPOINT=/contacts;API_KEY=113e22af7a6564e1d33266e3429ecc08-us14;DC_ID=us14```
+      - Environment Variables can be set individually as in the image below by clicking  in the icon at the end of the text box:
          - ![Environment Variables Dialog](/assets/EnvVars.png)
 3. Click on **OK** to save your changes
 4. To Start your application click **Run** menu and select **Run '{config_name}'** or **Debug '{config_name}'**
