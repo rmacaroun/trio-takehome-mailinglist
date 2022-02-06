@@ -60,7 +60,7 @@ DC_ID                      us14
 2. Data Center
    1. After logging in your account, your Data Center is between ```https://``` and ```.admin.mailchimp.com/account/profile/```
       - Example: In https://us14.admin.mailchimp.com/account/profile/, Data Center is ```us14```
-3. Postman collection used to support the development: ```assets/Mailing_List.postman_collection.json```
+3. Postman collection placed in: ```assets/Mailing_List.postman_collection.json```
 
 ### Useful Links:
 - https://mailchimp.com/resources/one-audience-organize-contacts-to-optimize-marketing/
