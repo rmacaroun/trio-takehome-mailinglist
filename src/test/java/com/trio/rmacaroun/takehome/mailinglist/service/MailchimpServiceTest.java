@@ -1,9 +1,7 @@
 package com.trio.rmacaroun.takehome.mailinglist.service;
 
 import com.trio.rmacaroun.takehome.mailinglist.client.MailchimpClient;
-import com.trio.rmacaroun.takehome.mailinglist.decoder.FeignCustomErrorDecoder;
 import com.trio.rmacaroun.takehome.mailinglist.dto.*;
-import feign.codec.ErrorDecoder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -11,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.Collections.singletonList;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -39,8 +37,6 @@ public class MailchimpServiceTest {
     private Contact contact;
 
     private Member member;
-
-    private ErrorDecoder errorDecoder = new FeignCustomErrorDecoder();
 
     @BeforeEach
     public void setup() {
@@ -69,11 +65,11 @@ public class MailchimpServiceTest {
 
     @Test
     public void shouldAddOrUpdateAudienceMembers() {
-        when(this.contactListService.listAllContacts()).thenReturn(Arrays.asList(this.contact));
+        when(this.contactListService.listAllContacts()).thenReturn(singletonList(this.contact));
         when(this.mailchimpClient.updateAudienceMember(anyString(), anyString(), Mockito.any())).thenReturn(this.member);
         when(this.mailchimpClient.listAudiences()).thenReturn(
                 Audiences.builder()
-                        .lists(Arrays.asList(Audiences.Audience.builder().id("1").build())).totalItems(1).build()
+                        .lists(singletonList(Audiences.Audience.builder().id("1").build())).totalItems(1).build()
         );
         List<Contact> contacts = this.mailchimpService.addOrUpdateAudienceMembers();
         isTrue(!contacts.isEmpty(), "Contact List is empty");
@@ -86,5 +82,15 @@ public class MailchimpServiceTest {
         isTrue(isNotBlank(firstContact.getEmail()), "Email is empty in the first contact");
         isTrue(isNotBlank(firstContact.getFirstName()), "First Name is empty in the first contact");
         isTrue(isNotBlank(firstContact.getLastName()), "Last Name is empty in the first contact");
+    }
+
+    @Test
+    public void shouldListAudiences() {
+        when(this.mailchimpClient.listAudiences()).thenReturn(
+                Audiences.builder()
+                        .lists(singletonList(Audiences.Audience.builder().id("1").build())).totalItems(1).build()
+        );
+        String audienceId = this.mailchimpService.findAudienceId();
+        isTrue(isNotBlank(audienceId), "Audience is blank");
     }
 }

@@ -11,11 +11,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
-import java.util.Arrays;
 import java.util.Date;
 
+import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -71,22 +70,19 @@ public class ContactListControllerIntegTest {
 
     @Test
     public void testSyncContactController() throws Exception {
-        when(this.contactListService.listAllContacts()).thenReturn(Arrays.asList(this.contact));
+        when(this.contactListService.listAllContacts()).thenReturn(singletonList(this.contact));
         when(this.mailchimpClient.updateAudienceMember(anyString(), anyString(), Mockito.any())).thenReturn(this.member);
         when(this.mailchimpClient.listAudiences()).thenReturn(
                 Audiences.builder()
-                        .lists(Arrays.asList(Audiences.Audience.builder().id("1").build())).totalItems(1).build()
+                        .lists(singletonList(Audiences.Audience.builder().id("1").build())).totalItems(1).build()
         );
         this.mockMvc.perform(
                         get("/contacts/sync"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpectAll(
-                        new ResultMatcher[]{
-                                jsonPath("$.syncedContacts", is(1)),
-                                jsonPath("$.contacts", hasSize(1)),
-                                jsonPath("$.contacts[0].email", is("rmacaroun@hotmail.com"))
-                        }
-                );
+                        jsonPath("$.syncedContacts", is(1)),
+                        jsonPath("$.contacts", hasSize(1)),
+                        jsonPath("$.contacts[0].email", is("rmacaroun@hotmail.com")));
     }
 }

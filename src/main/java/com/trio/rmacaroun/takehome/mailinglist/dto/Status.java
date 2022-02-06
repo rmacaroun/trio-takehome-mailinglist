@@ -8,7 +8,7 @@ public enum Status {
     PENDING("pending"),
     TRANSACTIONAL("transactional");
 
-    private String value;
+    private final String value;
 
     Status(final String value) {
         this.value = value;

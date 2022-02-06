@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.Collections.singletonList;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.springframework.util.Assert.isTrue;
 
@@ -44,7 +44,7 @@ public class ContactListServiceTest {
 
     @Test
     public void shouldListAllContacts() {
-        Mockito.when(this.contactListService.listAllContacts()).thenReturn(Arrays.asList(this.contact));
+        Mockito.when(this.contactListService.listAllContacts()).thenReturn(singletonList(this.contact));
         final List<Contact> contacts = this.contactListClient.listAllContacts();
         isTrue(!contacts.isEmpty(), "Contact List is empty");
         final Optional<Contact> first = contacts.stream().findFirst();
