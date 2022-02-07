@@ -66,3 +66,4 @@ DC_ID                      us14
 ### Useful Links:
 - **Mailchimp Tip**: https://mailchimp.com/resources/one-audience-organize-contacts-to-optimize-marketing/
 - **Technical Design**: https://docs.google.com/document/d/1F3DT_mhyWXoPcbfTgLYJwuqgyWgQZx-G0ojNMf59pz0/edit?usp=sharing
+- **Presentation Video**: https://www.youtube.com/watch?v=n1ygfzP-odA
