@@ -3,11 +3,10 @@ package com.trio.rmacaroun.takehome.mailinglist.client;
 import com.trio.rmacaroun.takehome.mailinglist.config.MailchimpConfig;
 import com.trio.rmacaroun.takehome.mailinglist.dto.Audiences;
 import com.trio.rmacaroun.takehome.mailinglist.dto.Member;
+import com.trio.rmacaroun.takehome.mailinglist.dto.Members;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(
         value = "mailchimp-client",
@@ -23,4 +22,12 @@ public interface MailchimpClient {
 
     @GetMapping(path = "${application.mailchimp.api.endpoint.list-audience}")
     Audiences listAudiences();
+
+    @GetMapping(path = "${application.mailchimp.api.endpoint.list-members}")
+    Members listMembers(final @PathVariable("audience_id") String audienceId,
+                        final @RequestParam("status") String status);
+
+    @DeleteMapping(path = "${application.mailchimp.api.endpoint.archive-member}")
+    ResponseEntity<?> archiveMember(final @PathVariable("audience_id") String audienceId,
+                                    final @PathVariable("subscriber_hash") String subscriberHash);
 }

@@ -8,6 +8,8 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Date;
 import java.util.List;
@@ -65,7 +67,21 @@ public class MailchimpServiceTest {
 
     @Test
     public void shouldAddOrUpdateAudienceMembers() {
+        MergeFields mergeFields = MergeFields.builder()
+                .firstName("Gabriel")
+                .lastName("Kugel")
+                .createdAt(now)
+                .avatar("http://localhost:8080/newavatar.jpg")
+                .trioId(100)
+                .build();
+        Member member = Member.builder()
+                .emailAddress("gkugel@gmail.com")
+                .status(Status.SUBSCRIBED.getValue())
+                .mergeFields(mergeFields)
+                .build();
         when(this.contactListService.listAllContacts()).thenReturn(singletonList(this.contact));
+        when(this.mailchimpClient.listMembers(anyString(), anyString())).thenReturn(Members.builder().members(singletonList(member)).build());
+        when(this.mailchimpClient.archiveMember(anyString(), anyString())).thenReturn(ResponseEntity.status(HttpStatus.NO_CONTENT).build());
         when(this.mailchimpClient.updateAudienceMember(anyString(), anyString(), Mockito.any())).thenReturn(this.member);
         when(this.mailchimpClient.listAudiences()).thenReturn(
                 Audiences.builder()

@@ -33,7 +33,7 @@ public class ContactController {
                     .build();
             return ResponseEntity.ok(syncedContactsResponse);
         } catch (ResponseStatusException e) {
-            throw e; // TODO find a better solution
+            throw e;
         } catch (Exception e) {
             final String errorMessage = "Unable to synchronize the contacts with Mailing list.";
             log.error(errorMessage + " Reason: {}", e.toString());
