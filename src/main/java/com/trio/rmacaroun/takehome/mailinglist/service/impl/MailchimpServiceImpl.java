@@ -5,6 +5,7 @@ import com.trio.rmacaroun.takehome.mailinglist.dto.Audiences;
 import com.trio.rmacaroun.takehome.mailinglist.dto.Audiences.Audience;
 import com.trio.rmacaroun.takehome.mailinglist.dto.Contact;
 import com.trio.rmacaroun.takehome.mailinglist.dto.Member;
+import com.trio.rmacaroun.takehome.mailinglist.dto.Status;
 import com.trio.rmacaroun.takehome.mailinglist.mapper.ContactMemberMapper;
 import com.trio.rmacaroun.takehome.mailinglist.service.ContactListService;
 import com.trio.rmacaroun.takehome.mailinglist.service.MailchimpService;
@@ -17,6 +18,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -37,7 +40,19 @@ public class MailchimpServiceImpl implements MailchimpService {
         contacts.forEach(contact ->
                 updateAudienceMember(audienceId, contact).ifPresent(members::add)
         );
+        archiveNonExistingMembers(audienceId, members);
         return this.contactMemberMapper.mapAsList(members, Contact.class);
+    }
+
+    private void archiveNonExistingMembers(final String audienceId, final List<Member> contacts) {
+        List<Member> existingMembers = this.mailchimpClient.listMembers(audienceId, Status.SUBSCRIBED.getValue()).getMembers();
+        Set<String> emails = contacts.stream().map(member -> member.getEmailAddress()).collect(Collectors.toSet());
+        Set<Member> collect = existingMembers.stream()
+                .distinct()
+                .filter(member -> emails.contains(member.getEmailAddress()))
+                .collect(Collectors.toSet());
+        existingMembers.removeAll(collect);
+        existingMembers.forEach(member -> this.mailchimpClient.archiveMember(audienceId, member.getEmailAddress()));
     }
 
     @Override

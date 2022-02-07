@@ -10,6 +10,8 @@ application:
       key: ${API_KEY}
       endpoint:
         list-audience: /lists
+        list-members: /lists/{audience_id}/members?status={status}
+        archive-member: /lists/{audience_id}/members/{subscriber_hash}
         update-member: /lists/{audience_id}/members/{subscriber_hash}
 
 logging:
