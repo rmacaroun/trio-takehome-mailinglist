@@ -64,4 +64,5 @@ DC_ID                      us14
 3. Postman collection placed in: ```assets/Mailing_List.postman_collection.json```
 
 ### Useful Links:
-- https://mailchimp.com/resources/one-audience-organize-contacts-to-optimize-marketing/
+- **Mailchimp Tip**: https://mailchimp.com/resources/one-audience-organize-contacts-to-optimize-marketing/
+- **Technical Design**: https://docs.google.com/document/d/1F3DT_mhyWXoPcbfTgLYJwuqgyWgQZx-G0ojNMf59pz0/edit?usp=sharing
