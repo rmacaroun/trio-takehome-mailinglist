@@ -1,0 +1,528 @@
+{
+	"info": {
+		"_postman_id": "6047ec26-7438-4483-b5d6-78c3291ddbcd",
+		"name": "Mailing List",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Trio",
+			"item": [
+				{
+					"name": "Contact List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://613b9035110e000017a456b1.mockapi.io/api/v1/contacts",
+							"protocol": "https",
+							"host": [
+								"613b9035110e000017a456b1",
+								"mockapi",
+								"io"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mailchimp",
+			"item": [
+				{
+					"name": "Audience",
+					"item": [
+						{
+							"name": "List Audiences",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{api_key}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rmacaroun",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DC_ID}}.api.mailchimp.com/3.0/lists",
+									"protocol": "https",
+									"host": [
+										"{{DC_ID}}",
+										"api",
+										"mailchimp",
+										"com"
+									],
+									"path": [
+										"3.0",
+										"lists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Audience",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{api_key}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rmacaroun",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"My New Audience\",\r\n    \"permission_reminder\": \"permission_reminder\",\r\n    \"email_type_option\": true,\r\n    \"contact\": {\r\n        \"company\": \"rmacaroun\",\r\n        \"address1\": \"Rua Muzambinho, 160 Ap. 702\",\r\n        \"address2\": \"Cruzeiro\",\r\n        \"city\": \"Belo Horizonte\",\r\n        \"state\": \"Mg\",\r\n        \"zip\": \"30310-280\",\r\n        \"country\": \"BR\",\r\n        \"phone\": \"\"\r\n    },\r\n    \"campaign_defaults\": {\r\n        \"from_name\": \"Rafael\",\r\n        \"from_email\": \"rmacaroun@hotmail.com\",\r\n        \"subject\": \"\",\r\n        \"language\": \"en\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{DC_ID}}.api.mailchimp.com/3.0/lists",
+									"protocol": "https",
+									"host": [
+										"{{DC_ID}}",
+										"api",
+										"mailchimp",
+										"com"
+									],
+									"path": [
+										"3.0",
+										"lists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Audience",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "rmacaroun",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "113e22af7a6564e1d33266e3429ecc08-us14",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Rafael Macaroun\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{DC_ID}}.api.mailchimp.com/3.0/lists/58e10be148",
+									"protocol": "https",
+									"host": [
+										"{{DC_ID}}",
+										"api",
+										"mailchimp",
+										"com"
+									],
+									"path": [
+										"3.0",
+										"lists",
+										"58e10be148"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Member",
+					"item": [
+						{
+							"name": "Delete Member",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{api_key}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rmacaroun",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://{{DC_ID}}.api.mailchimp.com/3.0/lists/58e10be148/members/e329f6de2f55f24ec751cfdf699e7681/actions/delete-permanent",
+									"protocol": "https",
+									"host": [
+										"{{DC_ID}}",
+										"api",
+										"mailchimp",
+										"com"
+									],
+									"path": [
+										"3.0",
+										"lists",
+										"58e10be148",
+										"members",
+										"e329f6de2f55f24ec751cfdf699e7681",
+										"actions",
+										"delete-permanent"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Member",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{api_key}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rmacaorun",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email_address\": \"Ebony_Brekke5@gmail.com\",\r\n    \"status\": \"pending\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{DC_ID}}.api.mailchimp.com/3.0/lists/58e10be148/members",
+									"protocol": "https",
+									"host": [
+										"{{DC_ID}}",
+										"api",
+										"mailchimp",
+										"com"
+									],
+									"path": [
+										"3.0",
+										"lists",
+										"58e10be148",
+										"members"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Members",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{api_key}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rmacaroun",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DC_ID}}.api.mailchimp.com/3.0/lists/58e10be148/members",
+									"protocol": "https",
+									"host": [
+										"{{DC_ID}}",
+										"api",
+										"mailchimp",
+										"com"
+									],
+									"path": [
+										"3.0",
+										"lists",
+										"58e10be148",
+										"members"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Members",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{api_key}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rmacaroun",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{DC_ID}}.api.mailchimp.com/3.0/search-members?query=Ebony_Brekke7@gmail.com",
+									"protocol": "https",
+									"host": [
+										"{{DC_ID}}",
+										"api",
+										"mailchimp",
+										"com"
+									],
+									"path": [
+										"3.0",
+										"search-members"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Ebony_Brekke7@gmail.com"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Member",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{api_key}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "rmacaroun",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email_address\": \"Ebony_Brekke7@gmail.com\",\r\n    \"status\": \"subscribed\",\r\n    \"merge_fields\": {\r\n        \"FNAME\": \"Ebony\",\r\n        \"LNAME\": \"Brekke\",\r\n        \"trioId\": 100,\r\n        \"AVATAR\": \"https://cdn.fakercloud.com/avatars/vc27_128.jpg\",\r\n        \"createdAt\": \"2022-01-17T16:53:01.844+00:00\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{DC_ID}}.api.mailchimp.com/3.0/lists/58e10be148/members/Ebony_Brekke7@gmail.com",
+									"protocol": "https",
+									"host": [
+										"{{DC_ID}}",
+										"api",
+										"mailchimp",
+										"com"
+									],
+									"path": [
+										"3.0",
+										"lists",
+										"58e10be148",
+										"members",
+										"Ebony_Brekke7@gmail.com"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Merge Fields",
+					"item": [
+						{
+							"name": "Add Merge Fields",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "rmacaroun",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "113e22af7a6564e1d33266e3429ecc08-us14",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"trioId\",\r\n    \"type\": \"number\",\r\n    \"tag\": \"trioId\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://us14.api.mailchimp.com/3.0/lists/58e10be148/merge-fields",
+									"protocol": "https",
+									"host": [
+										"us14",
+										"api",
+										"mailchimp",
+										"com"
+									],
+									"path": [
+										"3.0",
+										"lists",
+										"58e10be148",
+										"merge-fields"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ping",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{api_key}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "rmacaroun",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "user",
+								"value": "113e22af7a6564e1d33266e3429ecc08-us14",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{DC_ID}}.api.mailchimp.com/3.0/ping",
+							"protocol": "https",
+							"host": [
+								"{{DC_ID}}",
+								"api",
+								"mailchimp",
+								"com"
+							],
+							"path": [
+								"3.0",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sync Contacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/contacts/sync",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contacts",
+						"sync"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "api_key",
+			"value": "113e22af7a6564e1d33266e3429ecc08-us14"
+		},
+		{
+			"key": "DC_ID",
+			"value": "us14"
+		}
+	]
+}

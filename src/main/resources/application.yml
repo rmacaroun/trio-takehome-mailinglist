@@ -1,0 +1,29 @@
+application:
+  mockapi:
+    contactList:
+      baseurl: ${CONTACT_LIST_BASE_URL}
+      endpoint: ${CONTACT_LIST_ENDPOINT}
+  mailchimp:
+    api:
+      username: rmacaroun
+      baseurl: https://${DC_ID}.api.mailchimp.com/3.0
+      key: ${API_KEY}
+      endpoint:
+        list-audience: /lists
+        update-member: /lists/{audience_id}/members/{subscriber_hash}
+
+logging:
+  level:
+    com:
+      trio:
+        rmacaroun:
+          takehome:
+            mailinglist: INFO
+      baeldung:
+        cloud:
+          openfeign:
+            client: DEBUG
+
+server:
+  error:
+    include-message: always
